@@ -7,6 +7,13 @@ Widget appBarMain(BuildContext context) {
   );
 }
 
+Widget appBarSignUp(BuildContext context) {
+  return AppBar(
+    centerTitle: true,
+    title: Text('Sign Up Page'),
+  );
+}
+
 InputDecoration textFieldInputDecoration(String labelText, Icon iconType) {
   return InputDecoration(
     focusedBorder:
