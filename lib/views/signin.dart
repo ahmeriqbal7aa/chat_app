@@ -1,4 +1,4 @@
-import 'package:chat_app/widgets/widgets.dart';
+import 'package:chat_app/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
                 style: simpleTextStyle(),
                 decoration: textFieldInputDecoration(
                   'Email',
-                  Icon(Icons.account_circle, color: Colors.white54),
+                  Icon(Icons.email_outlined, color: Colors.white54),
                 ),
               ),
               SizedBox(height: 10.0),

@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 Widget appBarMain(BuildContext context) {
   return AppBar(
     centerTitle: true,
-    title: Text('Sign In Page'),
-  );
-}
-
-Widget appBarSignUp(BuildContext context) {
-  return AppBar(
-    centerTitle: true,
-    title: Text('Sign Up Page'),
+    title: Text('My Chat App'),
   );
 }
 
