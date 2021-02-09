@@ -1,9 +1,17 @@
+import 'package:chat_app/helper/helperFunctions.dart';
 import 'package:chat_app/services/auth.dart';
+import 'package:chat_app/services/database.dart';
+import 'package:chat_app/views/chatRoomScreen.dart';
 import 'package:chat_app/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
+  // -------------------------------------------------------------- //
+  final Function toggle;
+  // "SignUp()" constructor
+  SignUp(this.toggle);
+  // -------------------------------------------------------------- //
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -11,27 +19,40 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   // -------------------------------------------------------------- //
   AuthMethods authMethods = new AuthMethods();
-  // -------------------------------------------------------------- //
+  DatabaseMethods databaseMethods = new DatabaseMethods();
   TextEditingController userNameEditingController = new TextEditingController();
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
-  // -------------------------------------------------------------- //
   final formKey = GlobalKey<FormState>();
-  // -------------------------------------------------------------- //
   bool isLoading = false;
-  // -------------------------------------------------------------- //
   // TODO SignUp Function
-  signMeUp() {
+  signMeUp() async {
     if (formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
-      authMethods
+      await authMethods
           .signUpWithEmailAndPassword(
               emailEditingController.text, passwordEditingController.text)
-          .then((value) => print('$value'));
+          .then((result) {
+        if (result != null) {
+          Map<String, String> userDataMap = {
+            "name": userNameEditingController.text,
+            "email": emailEditingController.text
+          };
+          databaseMethods.uploadUserInfo(userDataMap);
+          HelperFunctions.saveUserLoggedInSharedPreference(true);
+          HelperFunctions.saveUserNameSharedPreference(
+              userNameEditingController.text);
+          HelperFunctions.saveUserEmailSharedPreference(
+              emailEditingController.text);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+        }
+      });
     }
   }
+  // -------------------------------------------------------------- //
 
   @override
   Widget build(BuildContext context) {
@@ -152,12 +173,20 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         Text('Already have an account ? ',
                             style: simpleTextStyle()),
-                        Text(
-                          'SignIn Now',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
+                        GestureDetector(
+                          onTap: () {
+                            widget.toggle();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text(
+                              'SignIn Now',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
                           ),
                         )
                       ],

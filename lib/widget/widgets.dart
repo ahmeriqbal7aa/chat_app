@@ -22,3 +22,12 @@ InputDecoration textFieldInputDecoration(String labelText, Icon iconType) {
 TextStyle simpleTextStyle() {
   return TextStyle(fontSize: 16.0, color: Colors.white);
 }
+
+TextStyle chatRoomTileStyle() {
+  return TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontFamily: 'OverpassRegular',
+    fontWeight: FontWeight.w300,
+  );
+}
