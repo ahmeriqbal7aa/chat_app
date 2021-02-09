@@ -13,9 +13,16 @@ samples, guidance on mobile development, and a full API reference.
 
 - Email/Password
 
-# Description
+## Description
 
 - Place your own ```google-services.json``` file into your app's ```/android/app``` folder.
+
+# Learning Concepts
+
+- firebase_auth package
+- cloud_firestore package
+- firebase_core package
+- shared_preferences package
 - Building complex UI
 - Use of Stream & Stream Builder
 - Firebase Auth: Sign in, Sign up and Sign out
@@ -23,13 +30,6 @@ samples, guidance on mobile development, and a full API reference.
 - Perform simple and compound queries in Cloud Firestore
 - Create Chat Room (with username) and Send Message (by username)
 - Firebase Firestore: Upload & Retrieve data stored in Cloud Firestore
-
-## Learning Concepts
-
-- firebase_auth package
-- cloud_firestore package
-- firebase_core package
-- shared_preferences package
 
 # Icon
 
