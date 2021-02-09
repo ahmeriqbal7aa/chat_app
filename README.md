@@ -1,6 +1,6 @@
 # chat_app
 ```
-A new Flutter-Firebase Fully Functioning "Chat" application with Firebase Cloud Firestore.
+A new Flutter-Firebase "Chat" application with Firebase Cloud Firestore.
 ```
 
 ## Getting Started
@@ -38,3 +38,9 @@ samples, guidance on mobile development, and a full API reference.
 # Screenshots
 
 <img src="https://user-images.githubusercontent.com/73339220/107324748-64ae1380-6aca-11eb-8b7e-ef84a33e0a8f.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107324756-67106d80-6aca-11eb-8f89-7b1e66712786.jpg" width=300 />
+<img src="https://user-images.githubusercontent.com/73339220/107371298-f4bd7e80-6b05-11eb-8e25-f92c62542795.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107371235-de172780-6b05-11eb-9f5d-247d49fd3255.jpg" width=300 />
+<img src="https://user-images.githubusercontent.com/73339220/107371036-95f80500-6b05-11eb-8193-1fe6016d9c56.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107371052-9e504000-6b05-11eb-97fc-00d6a72fa2ca.jpg" width=300 />
+
+# Working
+
+<img src="https://user-images.githubusercontent.com/73339220/107370899-634e0c80-6b05-11eb-8d90-7e512712c8df.gif" width=300 />
