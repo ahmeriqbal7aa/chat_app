@@ -53,6 +53,38 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  googleSignMeIn() async {
+    setState(() {
+      isLoading = true;
+    });
+    authMethods.signInWithGoogle().then((result) async {
+      print(authMethods.name);
+      print(authMethods.email);
+      if (result != null) {
+        Map<String, String> googleData = {
+          'googleUserName': authMethods.name,
+          'googleUserEmail': authMethods.email
+        };
+        await DatabaseMethods().uploadUserInfo(googleData);
+        snapshotUserInfo =
+            await DatabaseMethods().getUserByUserEmail(authMethods.email);
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
+        HelperFunctions.saveUserNameSharedPreference(
+            snapshotUserInfo.docs[0].data()["googleUserName"]);
+        HelperFunctions.saveUserEmailSharedPreference(
+            snapshotUserInfo.docs[0].data()["googleUserEmail"]);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
   // -------------------------------------------------------------- //
   @override
   Widget build(BuildContext context) {
@@ -139,18 +171,24 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(vertical: 20.0),
-                      child: Text(
-                        'Sign In with Google',
-                        style: TextStyle(color: Colors.black87, fontSize: 16.0),
-                      ),
-                      decoration: BoxDecoration(
-                        // Border
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        googleSignMeIn();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        child: Text(
+                          'Sign In with Google',
+                          style:
+                              TextStyle(color: Colors.black87, fontSize: 16.0),
+                        ),
+                        decoration: BoxDecoration(
+                          // Border
+                          borderRadius: BorderRadius.circular(30.0),
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     SizedBox(height: 16.0),

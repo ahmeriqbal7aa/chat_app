@@ -44,7 +44,7 @@ class DatabaseMethods {
   }
 
   getConversationMessage(String chatRoomId) async {
-    return await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection("ChatRoom")
         .doc(chatRoomId)
         .collection("chats")
@@ -53,7 +53,7 @@ class DatabaseMethods {
   }
 
   getChatRoom(String itIsMyName) async {
-    return await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection("ChatRoom")
         .where('users', arrayContains: itIsMyName)
         .snapshots();
